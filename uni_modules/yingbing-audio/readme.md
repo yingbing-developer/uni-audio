@@ -2,7 +2,8 @@
 
 * 1、这是一个音乐播放器，支持歌曲切换，随机播放，单曲循环，全局歌词显示等功能，但没有UI样式
 * 2、这个插件理论上支持所有端，但全局歌词显示只支持app端和h5端
-* 3、这个插件是利用[uni.createInnerAudioContext()](https://uniapp.dcloud.io/api/media/audio-context.html)来实现播放歌曲的，所以后台播放仅支持app，且要App 3.3.7+以上的版本才支持
+* 3、下面一些事件中的下横杠实际是没有的，比如on_Play,不知道为什么直接写出来会给我吃掉
+* 4、这个插件是利用[uni.createInnerAudioContext()](https://uniapp.dcloud.io/api/media/audio-context.html)来实现播放歌曲的，所以后台播放仅支持app，且要App 3.3.7+以上的版本才支持
 
 #props属性
 | 属性名 | 类型 | 默认值 | 可选值 | 说明 |
@@ -30,15 +31,15 @@
 | currentChange | 歌曲信息,callback({src: 播放链接, lyric: 歌词列表}) | 音频切换事件 |
 | lyricChange | {index: 当前歌词的索引, title: 当前歌词} | 歌词变化事件 |
 | onCanplay | 歌曲信息 | 音频进入可以播放状态，但不保证后面可以流畅播放，音频总长度可以从这里取到 |
-| onPlay | 无 | 音频播放事件 |
-| onPause | 无 | 音频暂停事件 |
-| onStop | 无 | 音频停止事件 |
-| onEnded | 无 | 音频自然播放结束事件 |
-| onError | 无 | 音频播放错误事件 |
-| onTimeUpdate | 无 | 音频播放进度更新事件 |
-| onWaiting | 无 | 音频加载中事件，当音频因为数据不足，需要停下来加载时会触发 |
-| onSeeking | 无 | 音频进行 seek 操作事件 |
-| onSeeked | 无 | 音频完成 seek 操作事件 |
+| on_Play | 无 | 音频播放事件 |
+| on_Pause | 无 | 音频暂停事件 |
+| on_Stop | 无 | 音频停止事件 |
+| on_Ended | 无 | 音频自然播放结束事件 |
+| on_Error | 无 | 音频播放错误事件 |
+| on_TimeUpdate | 无 | 音频播放进度更新事件 |
+| on_Waiting | 无 | 音频加载中事件，当音频因为数据不足，需要停下来加载时会触发 |
+| on_Seeking | 无 | 音频进行 seek 操作事件 |
+| on_Seeked | 无 | 音频完成 seek 操作事件 |
 
 #章节模式 内置方法
 | 方法名 | 参数 | 说明 |
@@ -115,8 +116,8 @@ let playList = [{
 	:lyricModel="lyricModel"
 	@currentChange="currentChange"
 	@lyricChange="lyricChange"
-	@onCanplay="onCanplay"
-	@onPlay="onPlay"
+	@on_Canplay="onCanplay"
+	@on_Play="onPlay"
 	></yingbing-audio>
 ```
 ```javascript
@@ -166,10 +167,10 @@ export default {
 		lyricChange (e) {
 			console.log(e);
 		},
-		onCanplay () {
+		on_Canplay () {
 			console.log('准备播放');
 		},
-		onPlay () {
+		on_Play () {
 			console.log('播放');
 		}
 	}

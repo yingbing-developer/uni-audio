@@ -98,7 +98,7 @@
 				return -1;
 			},
 			lyricLine () {
-				// #ifdef APP
+				// #ifdef APP-PLUS
 				return [{
 					tag:'font', id:'lyricBorder', text: this.lyricNowTitle, textStyles: {family: this.fontFamily, fontSrc: this.fontSrc, whiteSpace: 'normal', size: this.fontSize + 'px', color: this.strokeColor, verticalAlign: this.verticalAlign, weight: 'bold'}
 				},{
@@ -126,12 +126,14 @@
 			}
 		},
 		created () {
+			// #ifdef APP-PLUS || H5
 			this.initLyric()
+			// #endif
 		},
 		methods: {
 			initLyric () {
 				if ( this.isShow && this.lyric ) {
-					// #ifdef APP
+					// #ifdef APP-PLUS
 					musicLyric = this.verticalAlign == 'bottom' ? new plus.nativeObj.View('line',{
 						bottom: this.offset + 'px',left:'5%', width: '90%'
 					}, this.lyricLine) : new plus.nativeObj.View('line',{
@@ -152,7 +154,7 @@
 			},
 			drawLyric () {
 				if ( musicLyric ) {
-					// #ifdef APP
+					// #ifdef APP-PLUS
 					musicLyric.draw(this.lyricLine)
 					// #endif
 					// #ifdef H5
@@ -162,7 +164,7 @@
 			},
 			destroyLyric () {
 				if ( musicLyric ) {
-					// #ifdef APP
+					// #ifdef APP-PLUS
 					musicLyric.close();
 					// #endif
 					// #ifdef H5
@@ -174,6 +176,14 @@
 			}
 		},
 		watch: {
+			isShow (newVal) {
+				if ( newVal ) {
+					this.destroyLyric()
+					this.initLyric();
+				} else {
+					this.destroyLyric()
+				}
+			},
 			lyricNowIndex: {
 				handler (newVal) {
 					this.$emit('lyricChange', {

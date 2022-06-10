@@ -214,6 +214,9 @@
 					this.lyric = []
 					instance.destroy()
 					instance = null
+					// #ifdef APP-PLUS
+					this.$emit('onStop')
+					// #endif
 				}
 			},
 			//跳转播放位置

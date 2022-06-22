@@ -1,0 +1,13 @@
+
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+}
+.btn {
+	margin-top: 20rpx;
+}
+.list {
+	text-align: center;
+	margin-top: 20rpx;
+}
+

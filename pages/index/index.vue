@@ -2,6 +2,7 @@
 	<view class="content">
 		<yingbing-audio
 		ref="audio"
+		:autoplay="true"
 		:playList="playList"
 		:paused="paused"
 		:playMode="playMode"
@@ -26,6 +27,7 @@
 			<button class="btn" @click="next">下一首</button>
 			<button class="btn" @click="lyricModel = 'overall'">显示歌词</button>
 			<button class="btn" @click="lyricModel = 'close'">关闭歌词</button>
+			<button class="btn" @click="routerTo">测试页</button>
 			<button class="btn" @click="switchMode">播放模式：{{playMode == 'round' ? '顺序播放' : playMode == 'random' ? '随机播放' : '单曲循环'}}</button>
 			<button class="btn" @click="seek">跳到1分钟</button>
 			<button class="btn" @click="change(10001)">切换到第二首歌</button>
@@ -189,6 +191,11 @@
 			},
 			deleteSongs () {
 				this.playList = this.playList.filter((item, key) => key > 1)
+			},
+			routerTo () {
+				uni.navigateTo({
+					url: '/pages/test/test'
+				})
 			},
 			switchAlbum () {
 				this.playList = this.newList

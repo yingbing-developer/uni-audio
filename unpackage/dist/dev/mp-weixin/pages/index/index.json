@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "usingComponents": {
+    "yingbing-audio": "/uni_modules/yingbing-audio/components/yingbing-audio/yingbing-audio"
+  }
+}

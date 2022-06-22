@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "yingbing-lyric": "/uni_modules/yingbing-audio/components/yingbing-lyric/yingbing-lyric"
+  },
+  "component": true
+}
